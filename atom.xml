@@ -6,7 +6,7 @@
   <link href="https://codingdgsun.github.io/atom.xml" rel="self"/>
   
   <link href="https://codingdgsun.github.io/"/>
-  <updated>2021-12-15T14:42:01.338Z</updated>
+  <updated>2021-12-16T03:05:06.355Z</updated>
   <id>https://codingdgsun.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Dockerfile使用入门</title>
+    <link href="https://codingdgsun.github.io/2021/12/16/Dockerfile%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/"/>
+    <id>https://codingdgsun.github.io/2021/12/16/Dockerfile%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/</id>
+    <published>2021-12-16T03:04:41.000Z</published>
+    <updated>2021-12-16T03:05:06.355Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="使用Dockerfile生成镜像，并挂载数据卷"><a href="#使用Dockerfile生成镜像，并挂载数据卷" class="headerlink" title="使用Dockerfile生成镜像，并挂载数据卷"></a>使用Dockerfile生成镜像，并挂载数据卷</h4><blockquote><p>编写Dockerfile <strong>注意：命令单词全部大写</strong></p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM ubuntu</span><br><span class="line">VOLUME [&quot;volume1&quot;,&quot;volume2&quot;]</span><br><span class="line">CMD echo &quot;------Done------&quot;</span><br><span class="line">CMD /bin/bash</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/68-01.3dvklj7txhc0.jpg" alt="68-01"></p><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/68-02.1ubrnna0l29s.jpg" alt="68-02"></p><blockquote><p>查看docker build帮助</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker build --help     //查看docker build帮助</span><br><span class="line">        -f //dockerfile文件路径</span><br><span class="line">        -t //镜像别名:版本号</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/68-03.6jkmekwse7c0.jpg" alt="68-03"></p><blockquote><p>生成镜像并挂载数据卷</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f /Users/sunjie/Desktop/test-dockerfile/dockerfile01 -t my_ubuntu:1.0.0 .     //执行dockerfile生成镜像</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/68-04.n21idggknn.jpg" alt="68-04"></p><blockquote><p>启动一个容器</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it bbef8a39891f /bin/bash</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/68-05.6ts5ux1loy0.jpg" alt="68-05"></p><blockquote><p>在容器一个挂载卷中，新建文件</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/68-06.5eaen268b640.jpg" alt="68-06"></p><blockquote><p>查看容器元数据，挂载卷的外面主机的目录</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect 1c259b42fc70</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/68-07.6xkk78bsm4w0.jpg" alt="68-07"></p><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/68-08.yujnn6h6wdc.jpg" alt="68-08"></p><blockquote><p>查看外面物理主机相应目录内容，<strong>注意，在Mac上，此处有坑</strong></p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /var/lib/docker/volumes/568d0c3e0d3267bbace8e99c0a75b1d0e2037a919b2e629861727d5889624582/_data</span><br><span class="line">//提示找不到目录或文件 no such file or directory: /var/lib/docker/volumes/568d0c3e0d3267bbace8e99c0a75b1d0e2037a919b2e629861727d5889624582/_data</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/68-09.6ywhjmcdo48.jpg" alt="68-09"></p><blockquote><p>解决方案</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh               //执行此命令</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/68-10.4xs9w8ulqdk0.jpg" alt="68-10"></p><blockquote><p>跳转目录，找到物理主机相应目录内容</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/68-11.3ddngmrel9k0.jpg" alt="68-11"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;使用Dockerfile生成镜像，并挂载数据卷&quot;&gt;&lt;a href=&quot;#使用Dockerfile生成镜像，并挂载数据卷&quot; class=&quot;headerlink&quot; title=&quot;使用Dockerfile生成镜像，并挂载数据卷&quot;&gt;&lt;/a&gt;使用Dockerfile生成镜像，</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>关于MySQL的容器数据卷挂载实践</title>
@@ -432,27 +452,6 @@
     <summary type="html">&lt;p&gt;Java使用Thread类代表线程，所有的线程对象都必须是Thread类或者其子类的实例。每个线程的作用是完成一定的任务，实际上就是执行一段程序流（一段顺序执行的代码）。Java使用线程执行体来代表这段程序流。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h4 id=&quot;继承Thread类创建线程类</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java中的程序、进程、线程</title>
-    <link href="https://codingdgsun.github.io/2021/07/01/Java%E4%B8%AD%E7%9A%84%E7%A8%8B%E5%BA%8F%E3%80%81%E8%BF%9B%E7%A8%8B%E3%80%81%E7%BA%BF%E7%A8%8B/"/>
-    <id>https://codingdgsun.github.io/2021/07/01/Java%E4%B8%AD%E7%9A%84%E7%A8%8B%E5%BA%8F%E3%80%81%E8%BF%9B%E7%A8%8B%E3%80%81%E7%BA%BF%E7%A8%8B/</id>
-    <published>2021-07-01T08:47:35.000Z</published>
-    <updated>2021-07-01T08:48:01.200Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="程序、进程、线程的关系"><a href="#程序、进程、线程的关系" class="headerlink" title="程序、进程、线程的关系"></a>程序、进程、线程的关系</h4><ul><li>程序：操作系统中通常都支持同时运行多个任务，一个任务就是一个程序。程序只是一个静态的指令集合。</li><li>进程：每个运行中的程序，就是一个进程。进程是一个正在系统中活动的指令集合。</li><li>线程：当一个程序运行时，内部可能包含了多个顺序执行流，每个顺序执行流就是一个线程。</li></ul><hr><h4 id="并行性和并发性"><a href="#并行性和并发性" class="headerlink" title="并行性和并发性"></a>并行性和并发性</h4><ul><li>并行性：指在同一时刻，有多条指令在多个处理器上同时执行。</li><li>并发性：指在同一时刻，只能有一条指令执行，但多个进程指令被快速轮换执行，使得宏观上具有多个进程同时执行的效果。</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h4 id=&quot;程序、进程、线程的关系&quot;&gt;&lt;a href=&quot;#程序、进程、线程的关系&quot; class=&quot;headerlink&quot; title=&quot;程序、进程、线程的关系&quot;&gt;&lt;/a&gt;程序、进程、线程的关系&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;程序：操作系统中通常都支持同时运行多个任务，一个任务就是</summary>
       
     
     
