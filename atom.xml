@@ -6,7 +6,7 @@
   <link href="https://codingdgsun.github.io/atom.xml" rel="self"/>
   
   <link href="https://codingdgsun.github.io/"/>
-  <updated>2021-12-17T09:05:23.333Z</updated>
+  <updated>2021-12-21T03:01:05.016Z</updated>
   <id>https://codingdgsun.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Markdown语法入门</title>
+    <link href="https://codingdgsun.github.io/2021/12/21/Markdown%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8/"/>
+    <id>https://codingdgsun.github.io/2021/12/21/Markdown%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8/</id>
+    <published>2021-12-21T03:00:46.000Z</published>
+    <updated>2021-12-21T03:01:05.016Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Markdown-是一种轻量级标记语言"><a href="#Markdown-是一种轻量级标记语言" class="headerlink" title="Markdown 是一种轻量级标记语言"></a>Markdown 是一种轻量级标记语言</h1><h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><hr><h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">**加粗**</span><br><span class="line">*斜体*</span><br><span class="line">***加粗且斜体***</span><br><span class="line">~~删除线~~~</span><br></pre></td></tr></table></figure><p><strong>加粗</strong><br><em>斜体</em><br><em><strong>加粗且斜体</strong></em><br>~~删除线~~~</p><hr><h2 id="分隔线"><a href="#分隔线" class="headerlink" title="分隔线"></a>分隔线</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">***</span><br></pre></td></tr></table></figure><hr><h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![图片名称](图片本地地址，或网络的地址都可以)</span><br></pre></td></tr></table></figure><p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.zhimg.com%2Fv2-45e8fd517c0481f4961ab1e1e1abc5a6_1440w.jpg%3Fsource%3D172ae18b&refer=http%3A%2F%2Fpic1.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642426623&t=bf6345b71ce36b1ba82541d1d3b2b68f" alt="Markdown"></p><hr><h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[超链接名称](超链接地址)</span><br></pre></td></tr></table></figure><p><a href="http://localhost/">网站</a></p><hr><h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. a</span><br><span class="line">2. b</span><br><span class="line">3. c</span><br><span class="line"></span><br><span class="line">- A</span><br><span class="line">- B</span><br><span class="line">- C</span><br></pre></td></tr></table></figure><ol><li>a</li><li>b</li><li>c</li></ol><ul><li>A</li><li>B</li><li>C</li></ul><hr><h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">|序号|姓名|年龄|</span><br><span class="line">|:--|:--:|:--|</span><br><span class="line">|1|张三|14|</span><br><span class="line">|2|李四|3|</span><br><span class="line"></span><br><span class="line">-:  右对齐</span><br><span class="line">:-  左对齐</span><br><span class="line">:-: 居中对齐</span><br></pre></td></tr></table></figure><table><thead><tr><th align="left">序号</th><th align="center">姓名</th><th align="right">年龄</th></tr></thead><tbody><tr><td align="left">1</td><td align="center">张三阿</td><td align="right">14</td></tr><tr><td align="left">2</td><td align="center">李四</td><td align="right">3</td></tr></tbody></table><hr><h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用```来表示</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是代码块</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Markdown-是一种轻量级标记语言&quot;&gt;&lt;a href=&quot;#Markdown-是一种轻量级标记语言&quot; class=&quot;headerlink&quot; title=&quot;Markdown 是一种轻量级标记语言&quot;&gt;&lt;/a&gt;Markdown 是一种轻量级标记语言&lt;/h1&gt;&lt;h2 i</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Dockerfile创建Ubuntu镜像实践</title>
@@ -424,33 +444,6 @@
 &lt;li&gt;局域网（LAN）&lt;/li&gt;
 &lt;li&gt;城域网（MAN）&lt;/li&gt;
 &lt;li&gt;广域网（WAN）</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java中的注解Annotation</title>
-    <link href="https://codingdgsun.github.io/2021/07/03/Java%E4%B8%AD%E7%9A%84%E6%B3%A8%E8%A7%A3Annotation/"/>
-    <id>https://codingdgsun.github.io/2021/07/03/Java%E4%B8%AD%E7%9A%84%E6%B3%A8%E8%A7%A3Annotation/</id>
-    <published>2021-07-03T09:23:51.000Z</published>
-    <updated>2021-07-03T09:27:55.938Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>基本Annotation</strong></p><ul><li>@Override</li><li>@Deprecated</li><li>@SuppressWarnings</li><li>@SafeVarargs</li></ul><hr><p><strong>@Override用来指定方法重载，它可以强制一个子类必须覆盖父类的方法。</strong></p><ul><li>主要是帮助我们避免一些低级错误，例如：父类中有个run()方法，子类中的方法名不小心写成了runn()，在程序编译时候会报错提示。</li><li>只能作用于方法，不能作用于其他程序元素。</li></ul><p><strong>@Deprecated用于表示某个元素（类、方法等）已过时，当其他程序使用已过时的类、方法时，编译器将会给出警告。</strong></p><ul><li>虽然出现警告，但不影响使用，使用还是可以使用的</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//父类，其中标记为test()方法是过时方法。</span><br><span class="line">public class SupperClass &#123;</span><br><span class="line">    @Deprecated</span><br><span class="line">    public void test()&#123;</span><br><span class="line">        System.out.println(&quot;我是父类过时方法test&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//子类调用是，编译会警告提示，方法已经过时。</span><br><span class="line">public class SonClass extends SupperClass&#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SonClass sonClass = new SonClass();</span><br><span class="line">        sonClass.test();//提示方法已过时      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>@SuppressWarnings指示被该Annotation修饰的程序元素（以及该程序的所有子元素）取消显示指定的编译器警告。</strong></p><ul><li>如果使用了带@Deprecated注释的方法，编译器将在调用此方法的地方出现警告信息。将@SuppressWarnings(“deprecation”)放在调用过时方法的那个类上，则警告信息去掉。</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class SupperClass &#123;</span><br><span class="line">    @Deprecated</span><br><span class="line">    public void test()&#123;</span><br><span class="line">        System.out.println(&quot;我是父类过时方法test&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@SuppressWarnings(&quot;deprecation&quot;)//加上此注解，调用过时方法的警告提示消失</span><br><span class="line">public class SonClass extends SupperClass&#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SonClass sonClass = new SonClass();</span><br><span class="line">        sonClass.test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>SafeVarargs在声明具有模糊类型（比如：泛型）的可变参数的构造函数或方法时，Java编译器会报unchecked警告。</strong></p><ul><li>这类情况，如果确定声明的构造函数和方法的主体不会对其varargs参数执行潜在的不安全的操作，可使用@SafeVarargs进行标记，这样的话，Java编译器就不会报unchecked警告。</li><li>对于非static或非final声明的方法，不适用，会编译不通过。如果要抑制unchecked警告，可以使用@SuppressWarnings注解：@SuppressWarnings(“unchecked”)</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;strong&gt;基本Annotation&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;@Override&lt;/li&gt;
-&lt;li&gt;@Deprecated&lt;/li&gt;
-&lt;li&gt;@SuppressWarnings&lt;/li&gt;
-&lt;li&gt;@SafeVarargs&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr</summary>
       
     
     
