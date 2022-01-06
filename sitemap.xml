@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://codingdgsun.github.io/2022/01/06/MySQL%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
+    
+    <lastmod>2022-01-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://codingdgsun.github.io/2021/12/31/Java%E4%B8%AD%E7%9A%84%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/</loc>
     
     <lastmod>2021-12-31</lastmod>
@@ -354,7 +361,7 @@
 
   <url>
     <loc>https://codingdgsun.github.io/</loc>
-    <lastmod>2021-12-31</lastmod>
+    <lastmod>2022-01-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
