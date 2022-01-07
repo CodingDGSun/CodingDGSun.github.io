@@ -6,7 +6,7 @@
   <link href="https://codingdgsun.github.io/atom.xml" rel="self"/>
   
   <link href="https://codingdgsun.github.io/"/>
-  <updated>2022-01-06T08:51:42.452Z</updated>
+  <updated>2022-01-07T15:37:00.667Z</updated>
   <id>https://codingdgsun.github.io/</id>
   
   <author>
@@ -15,6 +15,69 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java中常见面试题一（困难）</title>
+    <link href="https://codingdgsun.github.io/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E5%9B%B0%E9%9A%BE%EF%BC%89/"/>
+    <id>https://codingdgsun.github.io/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E5%9B%B0%E9%9A%BE%EF%BC%89/</id>
+    <published>2022-01-07T15:36:33.000Z</published>
+    <updated>2022-01-07T15:37:00.667Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="Java中常见面试题一（困难）"><a href="#Java中常见面试题一（困难）" class="headerlink" title="Java中常见面试题一（困难）"></a>Java中常见面试题一（困难）</h4><blockquote><p>Redis的缓存击穿及解决方案</p></blockquote><ul><li>缓存击穿：<br><code>这个跟缓存雪崩有点像，但是又有一点不一样，缓存雪崩是因为大面积的缓存失效，数据库崩溃了,而缓存击穿不同的是缓存击穿是指存在一个热点数据Key，有请求不断来访问这个Key，这么多请求在同一段时间内访问这个热点数据，当这个 Key 失效时间到了的时候，持续的这么多请求直接怂到数据库上了，就在这个 Key 值上击穿了缓存。</code></li><li>解决方案：<br><code>设置热点数据永不过期或者加上互斥锁就搞定了。</code></li></ul><blockquote><p>索引的建立原则, 如何避免索引失效</p></blockquote><ul><li><p><strong>索引的建立原则</strong><br>索引的设计需要遵循一些已有的原则，这样便于提升索引的使用效率，更高效的使用索引。<br>(1)对查询频次较高，且数据量比较大的表，建立索引。<br>(2)索引字段的选择，最佳候选列应当从where子句的条件中提取，如果where子句中的组合比较多，那么应当挑选最常用，过滤效果最好的列的组合。<br>(3)如果where后有多个条件经常被用到，建议建立符合索引，复合索引需要遵循最左前缀法则，N个列组合而成的复合索引，相当于创建了N个索引。<br>复合索引命名规则index_表名_列名1_列名2_列明3<br>比如:createindexidx_seller_name_sta_addrontb_seller(name，status，address)<br>复合索引需要遵循最左前缀法则，N个列组合而成的复合索引，相当于创建了N个索引。最左前缀法则后面会详细介绍~<br>(4)使用唯一索引，区分度越高，使用索引的效率越高。<br>(5)索引并非越多越好，如果该表赠，删，改操作较多，慎重选择建立索引，过多索引会降低表维护效率。<br>(6)使用短索引，提高索引访问时的I/O效率，因此也相应提升了Mysql查询效率。<br>(7)多表连接的字段上需要建立索引，这样可以极大提高表连接的效率。<br>(8)排序字段上，因为排序效率低，添加索引能提高查询效率。</p></li><li><p><strong>如何避免索引失效</strong><br>(1)遵循最左前缀法则<br>如果在查询的时候，使用了复合索引，要遵循最左前缀法则，也就是查询从索引的最左列开始，并且不能跳过索引中的列。如果不包含最左边的索引列，则其他索引不生效;如果包含了最左边的索引列，但是跳过了一列直接索引了复合索引的第三列，则第三列的索引不生效。<br>(2)不要在索引上使用运算，否则索引也会失效。<br>(3)字符串不加引号，造成索引失效。<br>(4)尽量使用覆盖索引，避免select*，这样能提高查询效率。<br>(5)or关键字连接<br>用or分割开的条件，如果or前面的列有索引，or后面的列没有索引，那么查询的时候索引会失效，如果一定要用or查询，可以考虑下or连接的条件列都加索引，这样就不会失效了。<br>(6)like模糊查询<br>在使用like模糊查询时，如果like%也就是%加在后面索引不会失效，如果%lik或％like%也就是%加在前面，索引会失效。<br>如果查询的列占整张表的绝大多数，那么就会全表扫描，不会走索引。所以在查询的时候走不走索引不能百分百肯定。<br>也就是说如果查找一个稀有数据，如果建立了索引，就会走索引。如果查询的数据表达绝大多数都符合条件，就全表扫描，不走索引。</p></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;Java中常见面试题一（困难）&quot;&gt;&lt;a href=&quot;#Java中常见面试题一（困难）&quot; class=&quot;headerlink&quot; title=&quot;Java中常见面试题一（困难）&quot;&gt;&lt;/a&gt;Java中常见面试题一（困难）&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;Redis</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java中常见面试题一（中等）</title>
+    <link href="https://codingdgsun.github.io/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E4%B8%AD%E7%AD%89%EF%BC%89/"/>
+    <id>https://codingdgsun.github.io/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E4%B8%AD%E7%AD%89%EF%BC%89/</id>
+    <published>2022-01-07T15:35:37.000Z</published>
+    <updated>2022-01-07T15:36:11.941Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="Java中常见面试题一（中等）"><a href="#Java中常见面试题一（中等）" class="headerlink" title="Java中常见面试题一（中等）"></a>Java中常见面试题一（中等）</h4><blockquote><p>SQL语句优化有哪些？数据库的优化怎样优化？</p></blockquote><ul><li>对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。</li><li>应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描。</li><li>应尽量避免在 where 子句中使用!=或&lt;&gt;操作符，否则引擎将放弃使用索引而进行全表扫描。</li></ul><blockquote><p>乐观锁和悲观锁的解释及其应用场景</p></blockquote><ul><li><p>**悲观锁(Pessimistic Lock)**，顾名思义，就是很悲观，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会block直到它拿到锁。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。</p></li><li><p>**乐观锁(Optimistic Lock)**，顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库如果提供类似于write_condition机制的其实都是提供的乐观锁。</p></li><li><p><strong>使用场景</strong>：<br>两种锁各有优缺点，不可认为一种好于另一种，像乐观锁适用于写比较少的情况下，即冲突真的很少发生的时候，这样可以省去了锁的开销，加大了系统的整个吞吐量。但如果经常产生冲突，上层应用会不断的进行retry，这样反倒是降低了性能，所以这种情况下用悲观锁就比较合适。</p></li></ul><blockquote><p>过滤器和拦截器区别和项目中如何应用</p></blockquote><ul><li>过滤器：在目标资源之前进行的操作，过滤所有的内容，比如 action、servlet、jsp、html</li><li>拦截器：在目标资源之前进行的操作，不能拦截所有的内容，拦截 action，不能拦截 jsp，不能拦截 html</li><li>拦截器和过滤器之间有很多相同之处，但是两者之间存在根本的差别。其主要区别为以下几点：<br>(1）拦截器是基于 JAVA 反射机制的，而过滤器是基于函数回调的。<br>(2）拦截器不依赖于 Servlet 容器，而过滤器依赖于 Servlet 容器。<br>(3）拦截器只能对 Action 请求起作用，而过滤器可以对几乎所有的请求起作用。<br>(4）拦截器可以访问 Action 上下文、值栈里的对象，而过滤器不能。<br>(5）在 Action 的生命周期中，拦截器可以多次被调用，而过滤器只能在容器初始化时被调用一次。</li></ul><blockquote><p>GC回收机制的原理</p></blockquote><ul><li>用户Java程序运行过程中，Java虚拟机提供了另外一个系统级的线程，专门负责回收不再被使用的对象占用的内存，这一过程称为垃圾回收。</li><li>垃圾回收需要对堆内存中的对象进行标记，并对堆内存进行整理。这一过程的某些阶段需要暂时终止用户Java线程，等回收工作完成后再恢复执行。因此，频繁地触发虚拟机垃圾回收操作的行为会影响程序的运行效率。</li><li>那么什么情况下会频繁地出发垃圾回收操作呢，比如：堆内存设置过小，再比如：程序频繁地分配大型局部对象数组。</li></ul><blockquote><p>ConcurrentHashMap原理</p></blockquote><ul><li>JDK1.7(Segment数组结构和HashEntry数组结构)</li><li>JDK 1.7 ConcurrentHashMap是由Segment数组结构和HashEntry数组结构组成。 每个Segment都对应一个Hash表，且都有独立的锁，所以这样就可以每个线程访问一个Segment，就可以并行访问了，从而提高了效率。 这就是锁分段。<br>(1)首先将数据分为一段一段的存储,然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时,其他段的数据也能被其他线程访问。<br>(2)Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁的角色。HashEntry 用于存储键值对数据。<br>(3)一个ConcurrentHashMap里面包含多个Segment数组。 Segment的结构和HashMap类似，是一种数组和链表结构。 一个Segment包含一个HashEntry数组，每个HashEntry是一个链表结构的元素。 每个Segment守护一个HashEntry数组里的元素，当对HashEntry数组的数据进行修改时,首先获得对应的Segment的锁。<br>(4)并行度(默认16)<br>concurrencyLevel：并行级别、并发数、Segment 数，怎么翻译不重要，理解它。 默认是 16，也就是说 ConcurrentHashMap有16个Segments,最多可以同时支持 16 个线程并发写。</li><li>JDK1.8(数组+链表+红黑树)<br>(1)ConcurrentHashMap取消了Segment分段锁，采用CAS和synchronized来保证并发安全。<br>(2)数据结构跟HashMap1。8的结构类似,数组+链表/红黑树。<br>(3)jdk1.8在链表长度超过一定阀值(8)时,将链表(寻址时间复杂度为O(N))转换为红黑树(寻址时间复杂度为O(log(N)))<br>(4)synchronized只锁定当前链表或红黑树的首节点，这样只要hash不冲突，就不会产生并发，效率又提升N倍。</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;Java中常见面试题一（中等）&quot;&gt;&lt;a href=&quot;#Java中常见面试题一（中等）&quot; class=&quot;headerlink&quot; title=&quot;Java中常见面试题一（中等）&quot;&gt;&lt;/a&gt;Java中常见面试题一（中等）&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;SQL语句</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java中常见面试题一（简单）</title>
+    <link href="https://codingdgsun.github.io/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E7%AE%80%E5%8D%95%EF%BC%89/"/>
+    <id>https://codingdgsun.github.io/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E7%AE%80%E5%8D%95%EF%BC%89/</id>
+    <published>2022-01-07T15:34:13.000Z</published>
+    <updated>2022-01-07T15:34:50.075Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="Java中常见面试题一（简单）"><a href="#Java中常见面试题一（简单）" class="headerlink" title="Java中常见面试题一（简单）"></a>Java中常见面试题一（简单）</h4><blockquote><p>面向对象的特征有哪些方面? </p></blockquote><ul><li><p><strong>抽象</strong>：抽象就是忽略一个主题中与当前目标无关的那些方面，以便更充分地注意与当前目标有关的方面。抽象并不打算了解全部问题，而只是选择其中的一部分，暂时不用部分细节。抽象包括两个方面，一是过程抽象,二是数据抽象。</p></li><li><p><strong>继承</strong>：继承是一种联结类的层次模型，并且允许和鼓励类的重用，它提供了一种明确表述共性的方法。对象的一个新类可以从现有的类中派生，这个过程称为类继承。新类继承了原始类的特性，新类称为原始类的派生类（子类），而原始类称为新类的基类（父类）。派生类可以从它的基类那里继承方法和实例变量，并且类可以修改或增加新的方法使之更适合特殊的需要。</p></li><li><p><strong>封装</strong>：封装是把过程和数据包围起来，对数据的访问只能通过已定义的界面。面向对象计算始于这个基本概念，即现实世界可以被描绘成一系列完全自治、封装的对象,这些对象通过一个受保护的接口访问其他对象。</p></li><li><p><strong>多态性</strong>：多态性是指允许不同类的对象对同一消息作出响应。多态性包括参数化多态性和包含多态性。多态性语言具有灵活、抽象、行为共享、代码共享的优势，很好的解决了应用程序函数同名问题。</p></li></ul><blockquote><p>Enumeration接口和Iterator接口的区别有哪些？</p></blockquote><p><code>Enumeration速度是Iterator的2倍，同时占用更少的内存。但是，Iterator远远比Enumeration安全，因为其他线程不能够修改正在被iterator遍历的集合里面的对象。同时，Iterator允许调用者删除底层集合里面的元素，这对Enumeration来说是不可能的</code></p><blockquote><p>Collection和 Collections的区别</p></blockquote><ul><li>Collextion是接口，Java的集合由其派生而来，其是根接口，其下包括子类和实现类</li><li>Collections针对集合类的一个工具类，Collections工具类提供了大量的方法实现对集合（set、list、map）的排序、修改、查询等操作</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;Java中常见面试题一（简单）&quot;&gt;&lt;a href=&quot;#Java中常见面试题一（简单）&quot; class=&quot;headerlink&quot; title=&quot;Java中常见面试题一（简单）&quot;&gt;&lt;/a&gt;Java中常见面试题一（简单）&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;面向对象的</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>MySQL语法入门（一）</title>
@@ -368,66 +431,6 @@
       
     <summary type="html">&lt;h4 id=&quot;关于MySQL的容器数据卷挂载实践&quot;&gt;&lt;a href=&quot;#关于MySQL的容器数据卷挂载实践&quot; class=&quot;headerlink&quot; title=&quot;关于MySQL的容器数据卷挂载实践&quot;&gt;&lt;/a&gt;关于MySQL的容器数据卷挂载实践&lt;/h4&gt;&lt;blockquote&gt;
 </summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Docker容器数据卷挂载使用</title>
-    <link href="https://codingdgsun.github.io/2021/12/15/Docker%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7%E6%8C%82%E8%BD%BD%E4%BD%BF%E7%94%A8/"/>
-    <id>https://codingdgsun.github.io/2021/12/15/Docker%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7%E6%8C%82%E8%BD%BD%E4%BD%BF%E7%94%A8/</id>
-    <published>2021-12-15T05:48:05.000Z</published>
-    <updated>2021-12-15T05:48:23.958Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="Docker容器数据卷挂载使用"><a href="#Docker容器数据卷挂载使用" class="headerlink" title="Docker容器数据卷挂载使用"></a>Docker容器数据卷挂载使用</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --help       //查看运行容器帮助</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/66-01.1y8h1empy8zk.jpg" alt="66-01"></p><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/66-02.1x0uqgq56uao.jpg" alt="66-02"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v /Users/sunjie/Desktop:/home tomcat        //以交互方式运行tomcat容器，并将外部主机的/Users/sunjie/Desktop与tomcat容器的/home目录进行映射</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/66-03.1fecntektuhs.jpg" alt="66-03"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 7ff84fa6ad4c /bin/bash      //进入容器查看目录内容</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/66-04.6m1c6lqzi3o0.jpg" alt="66-04"></p><p>查看外部主机目录内容<br><br><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/66-05.9j9f4415o6w.jpg" alt="66-05"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect 7ff84fa6ad4c     //查看容器元数据信息，确认数据卷挂载是否成功</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/66-06.5r5oh1rfc3c0.jpg" alt="66-06"></p><p>在容器内目录创建文件，在外部主机目录可以查看到<br><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/66-07.68frwx2oa8g0.jpg" alt="66-07"></p><p>在外部主机目录创建文件，在容器内目录可以查看到<br><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/66-08.10jzjvl3dlow.jpg" alt="66-08"></p><p><strong>注意</strong>删除容器后，外部主机挂载目录里面的文件还在，没有丢失<br><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/66-09.54b0gxmwwt00.jpg" alt="66-09"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h4 id=&quot;Docker容器数据卷挂载使用&quot;&gt;&lt;a href=&quot;#Docker容器数据卷挂载使用&quot; class=&quot;headerlink&quot; title=&quot;Docker容器数据卷挂载使用&quot;&gt;&lt;/a&gt;Docker容器数据卷挂载使用&lt;/h4&gt;&lt;figure class=&quot;highli</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>提交Docker镜像</title>
-    <link href="https://codingdgsun.github.io/2021/12/15/%E6%8F%90%E4%BA%A4Docker%E9%95%9C%E5%83%8F/"/>
-    <id>https://codingdgsun.github.io/2021/12/15/%E6%8F%90%E4%BA%A4Docker%E9%95%9C%E5%83%8F/</id>
-    <published>2021-12-15T02:53:31.000Z</published>
-    <updated>2021-12-15T02:57:42.417Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="提交Docker镜像"><a href="#提交Docker镜像" class="headerlink" title="提交Docker镜像"></a>提交Docker镜像</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull tomcat      //下载tomcat镜像</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/65-01.323ona7ue4s0.jpg" alt="65-01"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name=&quot;MyTomcat&quot; -p 8888:8080 tomcat     //后台方式，以外部主机端口8888映射容器端口8080，运行Tomcat，容器别名为MyTomcat</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/63-11.1qdl3qsvqekg.jpg" alt="63-09"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl localhost:8888     //测试访问显示404</span><br></pre></td></tr></table></figure><p><strong>此处要注意，【有坑】！</strong></p><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/63-07.6m9lxsdxl0o0.jpg" alt="63-10"></p><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/63-08.3pbn6nqzv5q0.jpg" alt="63-11"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 2dd5319e4047 /bin/bash      //进入容器</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/63-12.1399pww3sdyo.jpg" alt="63-12"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -r webapps.dist/* webapps      //将webapps.dist目录下的所以文件，拷贝到webapps目录</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/63-13.3fqizw1cu620.jpg" alt="63-13"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl localhost:8888     //测试访问显示正常</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/63-14.3400o668a420.jpg" alt="63-14"></p><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/63-15.6jo9k4icxgg0.jpg" alt="63-15"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker commit --help        //查看commit帮助</span><br><span class="line">        -a 作者</span><br><span class="line">        -m 提交的信息内容</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/65-02.5iznzj4pifw0.jpg" alt="65-02"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -a &quot;codingdgsun&quot; -m &quot;Init tomcat webapps&quot; 27db1b0306bd mytomcat:1.0.0     //提交镜像，作者：codingdgsun；提交的备注信息：Init tomcat webapps；提交的镜像ID：27db1b0306bd；镜像的别名：mytomcat；版本号：1.0.0</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/65-03.2vpvb28nu7c0.jpg" alt="65-03">-</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h4 id=&quot;提交Docker镜像&quot;&gt;&lt;a href=&quot;#提交Docker镜像&quot; class=&quot;headerlink&quot; title=&quot;提交Docker镜像&quot;&gt;&lt;/a&gt;提交Docker镜像&lt;/h4&gt;&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;tabl</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>可视化图形工具Portainer</title>
-    <link href="https://codingdgsun.github.io/2021/12/14/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE%E5%BD%A2%E5%B7%A5%E5%85%B7Portainer/"/>
-    <id>https://codingdgsun.github.io/2021/12/14/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE%E5%BD%A2%E5%B7%A5%E5%85%B7Portainer/</id>
-    <published>2021-12-14T13:46:22.000Z</published>
-    <updated>2021-12-14T14:02:13.609Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="Portainer是一个可视化的容器镜像的图形管理工具，利用Portainer可以轻松构建，管理和维护Docker环境。-而且完全免费，基于容器化的安装方式，方便高效部署。"><a href="#Portainer是一个可视化的容器镜像的图形管理工具，利用Portainer可以轻松构建，管理和维护Docker环境。-而且完全免费，基于容器化的安装方式，方便高效部署。" class="headerlink" title="Portainer是一个可视化的容器镜像的图形管理工具，利用Portainer可以轻松构建，管理和维护Docker环境。 而且完全免费，基于容器化的安装方式，方便高效部署。"></a>Portainer是一个可视化的容器镜像的图形管理工具，利用Portainer可以轻松构建，管理和维护Docker环境。 而且完全免费，基于容器化的安装方式，方便高效部署。</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 8888:9000 --restart=always -v /var/run/docker.sock:/var/run/docker.sock --privileged=true portainer/portainer        //下载并运行portainer</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/64-01.30x8vniw5v80.jpg" alt="64-01"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost:8888       //测试查看网站</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/64-02.u4lhwlblly8.jpg" alt="64-02"></p><p>创建用户，进行登录<br><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/64-03.4hu89qjd0740.jpg" alt="64-03"></p><p>选择查看管理本地容器<br><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/64-04.rua4hm0lfyo.jpg" alt="64-04"></p><p><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/64-05.4ku8t6ys1ts0.jpg" alt="64-05"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;Portainer是一个可视化的容器镜像的图形管理工具，利用Portainer可以轻松构建，管理和维护Docker环境。-而且完全免费，基于容器化的安装方式，方便高效部署。&quot;&gt;&lt;a href=&quot;#Portainer是一个可视化的容器镜像的图形管理工具，利用Port</summary>
       
     
     

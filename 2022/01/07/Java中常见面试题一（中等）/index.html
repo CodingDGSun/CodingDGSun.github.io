@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Java中常见面试题一（中等） | CodingDGSun's Blog</title><meta name="author" content="CodingDGSun"><meta name="copyright" content="CodingDGSun"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Java中常见面试题一（中等） SQL语句优化有哪些？数据库的优化怎样优化？   对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。 应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描。 应尽量避免在 where 子句中使用!&#x3D;或&lt;&gt;操作符，否则引擎将放弃使用索引而进行全表扫描。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中常见面试题一（中等）">
+<meta property="og:url" content="https://codingdgsun.github.io/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E4%B8%AD%E7%AD%89%EF%BC%89/index.html">
+<meta property="og:site_name" content="CodingDGSun&#39;s Blog">
+<meta property="og:description" content="Java中常见面试题一（中等） SQL语句优化有哪些？数据库的优化怎样优化？   对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。 应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描。 应尽量避免在 where 子句中使用!&#x3D;或&lt;&gt;操作符，否则引擎将放弃使用索引而进行全表扫描。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2022-01-07T15:35:37.000Z">
+<meta property="article:modified_time" content="2022-01-07T15:36:11.941Z">
+<meta property="article:author" content="CodingDGSun">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://codingdgsun.github.io/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E4%B8%AD%E7%AD%89%EF%BC%89/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java中常见面试题一（中等）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-07 23:36:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="CodingDGSun's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/头像.7horht40yvwg.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">54</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CodingDGSun's Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Java中常见面试题一（中等）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-01-07T15:35:37.000Z" title="Created 2022-01-07 23:35:37">2022-01-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-01-07T15:36:11.941Z" title="Updated 2022-01-07 23:36:11">2022-01-07</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Java中常见面试题一（中等）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h4 id="Java中常见面试题一（中等）"><a href="#Java中常见面试题一（中等）" class="headerlink" title="Java中常见面试题一（中等）"></a>Java中常见面试题一（中等）</h4><blockquote>
+<p>SQL语句优化有哪些？数据库的优化怎样优化？</p>
+</blockquote>
+<ul>
+<li>对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。</li>
+<li>应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描。</li>
+<li>应尽量避免在 where 子句中使用!=或&lt;&gt;操作符，否则引擎将放弃使用索引而进行全表扫描。</li>
+</ul>
+<blockquote>
+<p>乐观锁和悲观锁的解释及其应用场景</p>
+</blockquote>
+<ul>
+<li><p>**悲观锁(Pessimistic Lock)**，顾名思义，就是很悲观，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会block直到它拿到锁。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。</p>
+</li>
+<li><p>**乐观锁(Optimistic Lock)**，顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库如果提供类似于write_condition机制的其实都是提供的乐观锁。</p>
+</li>
+<li><p><strong>使用场景</strong>：<br>两种锁各有优缺点，不可认为一种好于另一种，像乐观锁适用于写比较少的情况下，即冲突真的很少发生的时候，这样可以省去了锁的开销，加大了系统的整个吞吐量。但如果经常产生冲突，上层应用会不断的进行retry，这样反倒是降低了性能，所以这种情况下用悲观锁就比较合适。</p>
+</li>
+</ul>
+<blockquote>
+<p>过滤器和拦截器区别和项目中如何应用</p>
+</blockquote>
+<ul>
+<li>过滤器：在目标资源之前进行的操作，过滤所有的内容，比如 action、servlet、jsp、html</li>
+<li>拦截器：在目标资源之前进行的操作，不能拦截所有的内容，拦截 action，不能拦截 jsp，不能拦截 html</li>
+<li>拦截器和过滤器之间有很多相同之处，但是两者之间存在根本的差别。其主要区别为以下几点：<br>(1）拦截器是基于 JAVA 反射机制的，而过滤器是基于函数回调的。<br>(2）拦截器不依赖于 Servlet 容器，而过滤器依赖于 Servlet 容器。<br>(3）拦截器只能对 Action 请求起作用，而过滤器可以对几乎所有的请求起作用。<br>(4）拦截器可以访问 Action 上下文、值栈里的对象，而过滤器不能。<br>(5）在 Action 的生命周期中，拦截器可以多次被调用，而过滤器只能在容器初始化时被调用一次。</li>
+</ul>
+<blockquote>
+<p>GC回收机制的原理</p>
+</blockquote>
+<ul>
+<li>用户Java程序运行过程中，Java虚拟机提供了另外一个系统级的线程，专门负责回收不再被使用的对象占用的内存，这一过程称为垃圾回收。</li>
+<li>垃圾回收需要对堆内存中的对象进行标记，并对堆内存进行整理。这一过程的某些阶段需要暂时终止用户Java线程，等回收工作完成后再恢复执行。因此，频繁地触发虚拟机垃圾回收操作的行为会影响程序的运行效率。</li>
+<li>那么什么情况下会频繁地出发垃圾回收操作呢，比如：堆内存设置过小，再比如：程序频繁地分配大型局部对象数组。</li>
+</ul>
+<blockquote>
+<p>ConcurrentHashMap原理</p>
+</blockquote>
+<ul>
+<li>JDK1.7(Segment数组结构和HashEntry数组结构)</li>
+<li>JDK 1.7 ConcurrentHashMap是由Segment数组结构和HashEntry数组结构组成。 每个Segment都对应一个Hash表，且都有独立的锁，所以这样就可以每个线程访问一个Segment，就可以并行访问了，从而提高了效率。 这就是锁分段。<br>(1)首先将数据分为一段一段的存储,然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时,其他段的数据也能被其他线程访问。<br>(2)Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁的角色。HashEntry 用于存储键值对数据。<br>(3)一个ConcurrentHashMap里面包含多个Segment数组。 Segment的结构和HashMap类似，是一种数组和链表结构。 一个Segment包含一个HashEntry数组，每个HashEntry是一个链表结构的元素。 每个Segment守护一个HashEntry数组里的元素，当对HashEntry数组的数据进行修改时,首先获得对应的Segment的锁。<br>(4)并行度(默认16)<br>concurrencyLevel：并行级别、并发数、Segment 数，怎么翻译不重要，理解它。 默认是 16，也就是说 ConcurrentHashMap有16个Segments,最多可以同时支持 16 个线程并发写。</li>
+<li>JDK1.8(数组+链表+红黑树)<br>(1)ConcurrentHashMap取消了Segment分段锁，采用CAS和synchronized来保证并发安全。<br>(2)数据结构跟HashMap1。8的结构类似,数组+链表/红黑树。<br>(3)jdk1.8在链表长度超过一定阀值(8)时,将链表(寻址时间复杂度为O(N))转换为红黑树(寻址时间复杂度为O(log(N)))<br>(4)synchronized只锁定当前链表或红黑树的首节点，这样只要hash不冲突，就不会产生并发，效率又提升N倍。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">CodingDGSun</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://codingdgsun.github.io/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E4%B8%AD%E7%AD%89%EF%BC%89/">https://codingdgsun.github.io/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E4%B8%AD%E7%AD%89%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E5%9B%B0%E9%9A%BE%EF%BC%89/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Java中常见面试题一（困难）</div></div></a></div><div class="next-post pull-right"><a href="/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E7%AE%80%E5%8D%95%EF%BC%89/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Java中常见面试题一（简单）</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/CodingDGSun/images-db@master/Blog/头像.7horht40yvwg.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">CodingDGSun</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">54</div></a></div></div><a class="button--animated" id="card-info-btn" href="https://CodingDGSun.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E4%B8%AD%E7%AD%89%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">Java中常见面试题一（中等）</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E5%9B%B0%E9%9A%BE%EF%BC%89/" title="Java中常见面试题一（困难）"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java中常见面试题一（困难）"/></a><div class="content"><a class="title" href="/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E5%9B%B0%E9%9A%BE%EF%BC%89/" title="Java中常见面试题一（困难）">Java中常见面试题一（困难）</a><time datetime="2022-01-07T15:36:33.000Z" title="Created 2022-01-07 23:36:33">2022-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E4%B8%AD%E7%AD%89%EF%BC%89/" title="Java中常见面试题一（中等）"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java中常见面试题一（中等）"/></a><div class="content"><a class="title" href="/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E4%B8%AD%E7%AD%89%EF%BC%89/" title="Java中常见面试题一（中等）">Java中常见面试题一（中等）</a><time datetime="2022-01-07T15:35:37.000Z" title="Created 2022-01-07 23:35:37">2022-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E7%AE%80%E5%8D%95%EF%BC%89/" title="Java中常见面试题一（简单）"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java中常见面试题一（简单）"/></a><div class="content"><a class="title" href="/2022/01/07/Java%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%EF%BC%88%E7%AE%80%E5%8D%95%EF%BC%89/" title="Java中常见面试题一（简单）">Java中常见面试题一（简单）</a><time datetime="2022-01-07T15:34:13.000Z" title="Created 2022-01-07 23:34:13">2022-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/06/MySQL%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/" title="MySQL语法入门（一）"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL语法入门（一）"/></a><div class="content"><a class="title" href="/2022/01/06/MySQL%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/" title="MySQL语法入门（一）">MySQL语法入门（一）</a><time datetime="2022-01-06T08:51:05.000Z" title="Created 2022-01-06 16:51:05">2022-01-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/31/Java%E4%B8%AD%E7%9A%84%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/" title="Java中的桥接模式"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java中的桥接模式"/></a><div class="content"><a class="title" href="/2021/12/31/Java%E4%B8%AD%E7%9A%84%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/" title="Java中的桥接模式">Java中的桥接模式</a><time datetime="2021-12-31T05:58:55.000Z" title="Created 2021-12-31 13:58:55">2021-12-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By CodingDGSun</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
